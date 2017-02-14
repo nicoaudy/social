@@ -1,8 +1,10 @@
+import React from 'react';
+
 HomeLayout = React.createClass({
 	render() {
 		return (
 			<div>
-				Header
+				<Header />
 				<div className="container"> 
 					<div className="row"> 
 						<div className="col-md-6">
