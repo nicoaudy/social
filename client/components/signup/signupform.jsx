@@ -10,9 +10,21 @@ Signupform = React.createClass({
 				</div>
 				<form>
 					<div className="col-md-9">
-						<div className="col-md-6 form-group">
+						<div className="row">
+							<div className="col-md-6 form-group">
 							<input name="first_name" placeholder="First Name" type="text" ref="first_name" className="form-control" />
-						</div>					
+							</div>							
+							<div className="col-md-6 form-group">
+								<input name="last_name" placeholder="Last Name" type="text" ref="last_name" className="form-control" />
+							</div>	
+						</div>										
+						<div className="form-group">
+							<input name="email" placeholder="Email Or Mobile Number" type="text" ref="email" className="form-control" />
+						</div>							
+						<div className="form-group">
+							<input name="password" placeholder="Password" type="password" ref="password" className="form-control" />
+						</div>			
+						<button type="submit" className="btn btn-md btn-success">Signup</button>		
 					</div>
 				</form>
 			</div>
