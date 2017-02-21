@@ -2,7 +2,7 @@ Profile = React.createClass({
     render() {
         return (
             <div className="row">
-                <div className="col-md-2 hidden-xs" align="center">
+                <div className="col-md-2 hidden-xs">
                     Avatar
                     <div>
                         <label>
