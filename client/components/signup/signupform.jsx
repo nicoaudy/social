@@ -1,27 +1,29 @@
+import React from 'react';
+
 Signupform = React.createClass({
-	mixins: [ReactMeteorData],
-	getMeteorData() {
-		const data = {};
-		data.currentUser = Meteor.user();
-		return data;
-	},
-	getInitialState() {
-		return {
-			message: '',
-			messageClass: 'hidden'
-		}
-	},
-	displayError(message) {
- 		this.setState({message: message, messageClass: 'alert alert-danger registerError'});
-	},
-	handleSubmit(e) {
-		e.preventDefault();
-		this.setState({message: '', messageClass: 'hidden'});
-		var that 		= this;
-		var first_name 	= ReactDOM.findDOMNode(this.refs.first_name).value.trim();
-		var last_name 	= ReactDOM.findDOMNode(this.refs.last_name).value.trim();
-		var email 		= ReactDOM.findDOMNode(this.refs.email).value.trim();
-		var password 	= ReactDOM.findDOMNode(this.refs.password).value.trim();
+    mixins: [ReactMeteorData],
+    getMeteorData(){
+        let data = {};
+        data.currentUser = Meteor.user();
+        return data;
+    },
+    getInitialState(){
+        return {
+            message: '',
+            messageClass: 'hidden'
+        }
+    },
+    displayError(message){
+        this.setState({message: message, messageClass: 'alert alert-danger registerError'});
+    },
+    handleSubmit(e){
+        e.preventDefault();
+        this.setState({message: '', messageClass: 'hidden'});
+        var that = this;
+        var first_name 	= ReactDOM.findDOMNode(this.refs.first_name).value.trim();
+        var last_name 	= ReactDOM.findDOMNode(this.refs.last_name).value.trim();
+        var email 		= ReactDOM.findDOMNode(this.refs.email).value.trim();
+        var password 	= ReactDOM.findDOMNode(this.refs.password).value.trim();
         var user = {
             email: email,
             password: password,
@@ -33,14 +35,14 @@ Signupform = React.createClass({
                 friends: []
             }
         };
-		Accounts.createUser(user, function(e){
-		    if(e){
-		        that.displayError(e.reason);
-		    } else {
-		        FlowRouter.go('/dashboard');
-		    }
-		})﻿
-	},
+        Accounts.createUser(user, function (e) {
+            if (e) {
+                that.displayError(e.reason);
+            } else {
+                FlowRouter.go('/dashboard');
+            }
+        })
+    },
 	render() {
 		return (
 			<div className="row">
