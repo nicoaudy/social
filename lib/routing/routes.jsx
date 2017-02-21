@@ -38,3 +38,13 @@ publicRoutes.route('/signout', {
         });
     }
 });
+
+privateRoutes.route('/profile', {
+	name: 'Profile',
+	action: function(){
+        mount(Layout,{
+            sidebar: <Sidebar />,
+            content: <Profile />
+        })
+	}
+});
