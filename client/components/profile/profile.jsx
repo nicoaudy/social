@@ -12,6 +12,15 @@ Profile = React.createClass({
             email:this.data && this.data.currentUser && this.data.currentUser.emails ? this.data.currentUser.emails[0].address:'you@yourdomain.com'
         }
     },
+    toggleEdit(){
+        this.setState({editmode: !this.state.editmode, email: this.data.currentUser ? Meteor.user().emails[0].address : '' });
+    },
+    changeEmail(e){
+        e.preventDefault();
+        Meteor.call('changeEmail',e.target.value);
+        this.toggleEdit();
+        this.setState({email: e.target.value});
+    },
     componentDidMount(){
         this.setState({email:this.data.currentUser ? Meteor.user().emails[0].address:''});
     },
@@ -28,8 +37,10 @@ Profile = React.createClass({
             });
         });
     },
-
     render() {
+        var editmode = <input refs="email" defaultValue={this.state.email} onBlur={this.changeEmail} type="text"/>
+        var emaillink = this.data.currentUser && this.data.currentUser.emails ? 'mailto:' + this.data.currentUser.emails[0].address : '';
+        var mailblock = !this.state.editmode ? <a href={emaillink}>{this.state.email}</a> : editmode;
         return (
             <div className="row">
                 <div className="col-md-2 hidden-xs">
@@ -47,7 +58,8 @@ Profile = React.createClass({
                     <table className="table table-user-information">
                         <tbody>
                             <tr>
-                                <td>Email :</td>
+                                <td onClick={this.toggleEdit}>Email :</td>
+                                <td>{mailblock}</td>
                             </tr>
                         </tbody>
                     </table>
